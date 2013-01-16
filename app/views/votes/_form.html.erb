@@ -19,7 +19,7 @@
     <%= f.fields_for :candidate_ranks do |cr| %>
       <div class="field">
         <%= cr.object.candidate.name %>
-        <%= f.hidden_field :candidate_id, value: cr.object.candidate_id %>
+        <%= cr.hidden_field :candidate_id, value: cr.object.candidate_id %>
         <%= cr.select :rank, options_for_select([nil] + (1..(@vote.ballot.candidates.count)).to_a, nil) %>
       </div>
     <% end %>

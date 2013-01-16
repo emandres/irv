@@ -4,6 +4,14 @@
   <b>Ballot:</b>
   <%= @vote.ballot.name if @vote.ballot %>
 </p>
+<p>
+  <b>Candidate Ranks:</b>
+  <ol>
+    <% @vote.candidate_ranks.where("rank is not null").order(:rank).each do |cr| %>
+      <li><%= cr.candidate.name %></li>
+    <% end %>
+  </ol>
+</p>
 
 
 <%= link_to 'Edit', edit_vote_path(@vote) %> |

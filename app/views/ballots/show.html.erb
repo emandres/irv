@@ -5,6 +5,20 @@
   <%= @ballot.name %>
 </p>
 
+<p>
+  <b>Candidates:</b>
+  <ul>
+    <% @ballot.candidates.each do |c| %>
+      <li><%= c.name %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <b>Winner(s):</b>
+  <%= IrvElection.new(@ballot).winner.name %>
+</p>
+
 
 <%= link_to 'Edit', edit_ballot_path(@ballot) %> |
 <%= link_to 'Back', ballots_path %>
