@@ -9,20 +9,24 @@
   <%= @ballot.name %>
 </p>
 
-<p>
-  <b>Candidates:</b>
-  <ul>
-    <% @ballot.candidates.each do |c| %>
-      <li><%= c.name %></li>
-    <% end %>
-  </ul>
-</p>
+<% if @ballot.candidates.any? %>
+  <p>
+    <b>Candidates:</b>
+      <ul>
+        <% @ballot.candidates.each do |c| %>
+          <li><%= c.name %></li>
+        <% end %>
+      </ul>
+  </p>
+<% end %>
 
-<p>
-  <b>Winner:</b>
-  <% winner = IrvElection.new(@ballot).winner %>
-  <%= winner.name if winner %>
-</p>
+<% if @ballot.candidates.any? %>
+  <p>
+    <b>Winner:</b>
+    <% winner = IrvElection.new(@ballot).winner %>
+    <%= winner.name if winner %>
+  </p>
+<% end %>
 
 
 <%= link_to 'Edit', edit_ballot_path(@ballot) %> |

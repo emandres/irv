@@ -7,6 +7,9 @@ class IrvElection
   end
   
   def winner
+    if @candidates.empty?
+      return nil
+    end
     winning_number = @votes.count / 2
     number_rounds = 0
     while true
