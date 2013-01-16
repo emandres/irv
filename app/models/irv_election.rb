@@ -18,7 +18,7 @@ class IrvElection
       else
         worst_candidate = vote_counts.sort_by { |k, v| v }.first[0]
         worst_number_votes = vote_counts[worst_candidate]
-        @eliminated_candidates.concat vote_counts.find_all { |k, v| v == worst_number_votes }.keys
+        @eliminated_candidates.concat vote_counts.find_all { |k, v| v == worst_number_votes }[0]
         if @candidates.reject { |c| @eliminated_candidates.include? c }.empty?
           return nil
         end
@@ -39,9 +39,9 @@ class IrvElection
 
   def preferred_candidate(vote, eliminated_candidates)
     vote.candidate_ranks.find_all{ |cr| cr.rank != nil }.
+      reject { |cr| eliminated_candidates.include? cr.candidate }.
       sort_by(&:rank).
       map(&:candidate).
-      reject { |c| eliminated_candidates.include? c }.
       first
   end
 end
