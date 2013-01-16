@@ -1,4 +1,5 @@
 Irv::Application.routes.draw do
+  root to: 'ballots#index'
   resources :votes
 
 
