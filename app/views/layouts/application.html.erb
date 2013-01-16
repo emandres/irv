@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div>
+    <ul>
+      <li><a href="<%= ballots_path %>">Ballots</a></li>
+      <li><a href="<%= candidates_path %>">Candidates</a></li>
+      <li><a href="<%= votes_path %>">Votes</a></li>
+    </ul>
+  </div>
 
 <%= yield %>
 
