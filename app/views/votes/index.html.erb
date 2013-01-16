@@ -10,7 +10,7 @@
 
 <% @votes.each do |vote| %>
   <tr>
-    <td><%= vote.ballot %></td>
+    <td><%= vote.ballot.name if vote.ballot %></td>
     <td><%= link_to 'Show', vote %></td>
     <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
     <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>

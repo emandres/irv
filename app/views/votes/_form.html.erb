@@ -13,7 +13,15 @@
 
   <div class="field">
     <%= f.label :ballot %><br />
-    <%= f.text_field :ballot %>
+    <%= f.select :ballot_id, ballot_options_for_select %>
+  </div>
+  <div>
+    <%= f.fields_for :candidate_ranks do |cr| %>
+      <div class="field">
+        <%= cr.object.candidate.name %>
+        <%= cr.select :rank, options_for_select([nil] + (1..(@vote.ballot.candidates.count)).to_a, nil) %>
+      </div>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

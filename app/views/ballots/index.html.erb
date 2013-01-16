@@ -6,6 +6,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @ballots.each do |ballot| %>
@@ -14,6 +15,7 @@
     <td><%= link_to 'Show', ballot %></td>
     <td><%= link_to 'Edit', edit_ballot_path(ballot) %></td>
     <td><%= link_to 'Destroy', ballot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Vote', new_vote_path(ballot_id: ballot.id) %>
   </tr>
 <% end %>
 </table>

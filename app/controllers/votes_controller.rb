@@ -25,6 +25,8 @@ class VotesController < ApplicationController
   # GET /votes/new.json
   def new
     @vote = Vote.new
+    @vote.ballot = Ballot.find(params[:ballot_id])
+    @vote.candidate_ranks = @vote.ballot.candidates.order(:name).each_with_index.map { |c, i| CandidateRank.new(candidate: c) }
 
     respond_to do |format|
       format.html # new.html.erb
