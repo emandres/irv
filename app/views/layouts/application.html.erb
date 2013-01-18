@@ -2,17 +2,25 @@
 <html>
   <head>
     <title>Irv</title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div class="header">
-      <ul>
-        <li><a href="<%= ballots_path %>">Ballots</a></li>
-        <li><a href="<%= candidates_path %>">Candidates</a></li>
-        <li><a href="<%= votes_path %>">Votes</a></li>
-      </ul>
+      <% if current_user %>
+        <ul>
+          <li><%= link_to 'Ballots', ballots_path %></li>
+          <li><%= link_to 'Candidates', candidates_path %></li>
+          <li><%= link_to 'Votes', votes_path %></li>
+          <li><%= link_to 'Users', users_path %></li>
+        </ul>
+
+        <div class="session_status">
+          <%= current_user.email %>
+          <%= link_to 'Logout', session_path, method: :delete %>
+        </div>
+      <% end %>
     </div>
     <div class="content">
       <%= yield %>

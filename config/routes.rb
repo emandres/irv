@@ -1,4 +1,7 @@
 Irv::Application.routes.draw do
+  resources :users, except: [:edit, :update]
+
+
   root to: 'ballots#index'
   resources :votes
 
@@ -7,6 +10,8 @@ Irv::Application.routes.draw do
 
 
   resources :ballots
+
+  resource :session, only: [:new, :create, :destroy]
 
 
   # The priority is based upon order of creation:

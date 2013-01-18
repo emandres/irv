@@ -24,8 +24,23 @@ div.header ul li
   margin-right: 10px;
 }
 
+div.session_status
+{
+  float: right;
+}
+
 div.content
 {
   clear: both;
   padding-top: 20px;
+}
+
+p.alert
+{
+  color: red;
+}
+
+p.notice
+{
+  color: green;
 }
