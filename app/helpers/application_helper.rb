@@ -1,5 +1,7 @@
 module ApplicationHelper
-  def ballot_options_for_select
-    options_for_select Ballot.all.map { |b| [ b.name, b.id ] }
+  class ActiveRecord::Base
+    def self.options_for_select
+      all.sort_by{ |x| x.to_s }.map { |x| [ x.to_s, x.id ]}
+    end
   end
 end
