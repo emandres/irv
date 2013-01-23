@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CandidatesControllerTest < ActionController::TestCase
   setup do
+    session[:user_id] = users(:one).id
     @candidate = candidates(:one)
   end
 
@@ -18,7 +19,7 @@ class CandidatesControllerTest < ActionController::TestCase
 
   test "should create candidate" do
     assert_difference('Candidate.count') do
-      post :create, candidate: { name: @candidate.name }
+      post :create, candidate: { name: @candidate.name, ballot_id: ballots(:one).id }
     end
 
     assert_redirected_to candidate_path(assigns(:candidate))

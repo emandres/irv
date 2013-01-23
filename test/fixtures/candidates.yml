@@ -1,9 +1,45 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  ballot: 
+  name: A
+  ballot: one
 
 two:
-  name: MyString
-  ballot: 
+  name: B
+  ballot: one
+
+three:
+  name: C
+  ballot: one
+
+c1:
+  name: c1
+  ballot: two
+
+c2:
+  name: c2
+  ballot: two
+
+c3:
+  name: c3
+  ballot: two
+
+c4:
+  name: c4
+  ballot: two
+
+c5:
+  name: c5
+  ballot: two
+
+c6:
+  name: c6
+  ballot: two
+
+c7:
+  name: c7
+  ballot: two
+
+c8:
+  name: c8
+  ballot: two

@@ -1,21 +1,15 @@
 Irv::Application.routes.draw do
-  resources :users, except: [:edit, :update]
-
-
   root to: 'ballots#index'
+
+  resources :users, except: [:edit, :update] do
+    resources :authorizations, only: [:index, :create, :destroy]
+  end
+
   resources :votes
-
-
   resources :candidates
-
-
   resources :ballots
-
   resource :session, only: [:new, :create, :destroy]
-
-  resources :authorizations
-
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

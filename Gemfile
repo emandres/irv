@@ -7,6 +7,8 @@ gem 'rails', '3.2.11'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'turn'
+  gem 'ruby-debug19', require: 'ruby-debug'
 end
 
 group :production do

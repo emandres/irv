@@ -3,6 +3,7 @@ require 'test_helper'
 class BallotsControllerTest < ActionController::TestCase
   setup do
     @ballot = ballots(:one)
+    session[:user_id] = users(:one).id
   end
 
   test "should get index" do

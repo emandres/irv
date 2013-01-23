@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :ballot %><br />
-    <%= f.select :ballot_id, ballot_options_for_select %>
+    <%= f.select :ballot_id, Ballot.options_for_select %>
   </div>
   <div>
     <%= f.fields_for :candidate_ranks do |cr| %>

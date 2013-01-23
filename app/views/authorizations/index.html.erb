@@ -1,21 +1,26 @@
-<h1>Listing authorizations</h1>
+<h1>Roles for <%= User.find(params[:user_id]).email%></h1>
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
+    <th>Role</th>
     <th></th>
   </tr>
 
 <% @authorizations.each do |authorization| %>
   <tr>
-    <td><%= link_to 'Show', authorization %></td>
-    <td><%= link_to 'Edit', edit_authorization_path(authorization) %></td>
-    <td><%= link_to 'Destroy', authorization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <%= authorization.role.name %>
+    </td>
+    <td><%= button_to 'Remove', user_authorization_path(params[:user_id], authorization), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+<% end %>
+<% User.find(params[:user_id]).unauthorized_roles.each do |r| %>
+  <tr>
+    <td><%= r.name %></td>
+    <td><%= button_to 'Add', user_authorizations_path(params[:user_id], role_id: r.id) %></td>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Authorization', new_authorization_path %>
+<%= link_to 'Back', user_path(params[:user_id]) %>

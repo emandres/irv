@@ -3,6 +3,7 @@ require 'test_helper'
 class VotesControllerTest < ActionController::TestCase
   setup do
     @vote = votes(:one)
+    session[:user_id] = users(:one).id
   end
 
   test "should get index" do
@@ -12,13 +13,21 @@ class VotesControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, ballot_id: ballots(:one).id
     assert_response :success
   end
 
   test "should create vote" do
     assert_difference('Vote.count') do
-      post :create, vote: {  }
+      b = ballots(:one)
+      cr = b.candidates.map do |c|
+        { 
+          candidate_id: c.id,
+          rank: nil
+        }
+      end
+      post :create, vote: { ballot_id: b.id, candidate_ranks_attributes: cr }
+      #debugger
     end
 
     assert_redirected_to vote_path(assigns(:vote))
@@ -35,7 +44,14 @@ class VotesControllerTest < ActionController::TestCase
   end
 
   test "should update vote" do
-    put :update, id: @vote, vote: {  }
+    b = ballots(:one)
+    cr = b.candidates.map do |c|
+      { 
+        candidate_id: c.id,
+        rank: nil
+      }
+    end
+    put :update, id: @vote, vote: { ballot_id: b.id, candidate_ranks_attributes: cr }
     assert_redirected_to vote_path(assigns(:vote))
   end
 

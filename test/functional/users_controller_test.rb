@@ -6,6 +6,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
+    session[:user_id] = users(:one).id
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
@@ -18,28 +19,20 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { email: @user.email, password_digest: @user.password_digest }
+      post :create, user: { email: 'tom@tom.com', password: 'a', password_confirmation: 'a' }
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to root_url
   end
 
   test "should show user" do
+    session[:user_id] = users(:one).id
     get :show, id: @user
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @user
-    assert_response :success
-  end
-
-  test "should update user" do
-    put :update, id: @user, user: { email: @user.email, password_digest: @user.password_digest }
-    assert_redirected_to user_path(assigns(:user))
-  end
-
   test "should destroy user" do
+    session[:user_id] = users(:one).id
     assert_difference('User.count', -1) do
       delete :destroy, id: @user
     end
